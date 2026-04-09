@@ -1,0 +1,35 @@
+# Entorno virtual
+venv/
+.env
+
+# Archivos compilados de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+*$py.class
+*.so
+
+#Base de datos
+usuarios.db
+*.db
+*.sqlite3
+
+#Alembic
+alembic/versions/*.pyc
+
+# Archivos de logs
+*.log
+
+# Configuración de IDE
+.vscode/
+.idea/
+
+# 🔹 Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# 🔹 Archivos temporales
+*.swp
+*.swo
