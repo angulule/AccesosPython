@@ -1,1 +1,1 @@
-from .run import app
+from app.seeds.run import app

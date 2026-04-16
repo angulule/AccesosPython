@@ -12,5 +12,8 @@ def init_db() -> None:
     
 
 def get_session() -> Iterator[Session]:
-    with Session(engine) as session:
+    session = Session(engine)
+    try:
         yield session
+    finally:
+        session.close()

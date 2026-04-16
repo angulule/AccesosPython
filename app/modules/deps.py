@@ -2,44 +2,69 @@
 
 from typing import Annotated
 from fastapi import Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials, OAuth2PasswordBearer
 from sqlmodel import Session
 
 from app.core.db import get_session
 from app.core.security import decode_token
-# from app.models.user import User
-# from app.repositories.user_repository import UserRepository
 
-# oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/token")
+from app.modules.user.infrastructure.UserModel import UserModel
+from app.modules.user.infrastructure.user_repository import UserRepository
 
-def get_db() -> Session:
-    return next(get_session())
+security = HTTPBearer()
 
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/token")
 
-DBSession = Annotated[Session, Depends(get_db)]
+DBSession = Annotated[Session, Depends(get_session)]
 
+credentials_exc = HTTPException(
+    status_code=status.HTTP_401_UNAUTHORIZED,
+    detail="No autorizado",
+    headers={"WWW-Authenticate": "Bearer"}
+)
 
-# def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], db: DBSession) -> User:
-
-#     credentials_exc = HTTPException(
-#         status_code=status.HTTP_401_UNAUTHORIZED,
-#         detail="No autorizado",
-#         headers={"WWW-Authenticate": "Bearer"}
-#     )
+# def get_current_user(
+#     credentials: Annotated[HTTPAuthorizationCredentials, Depends(security)], 
+#     db: Annotated[Session, Depends(get_session)]) -> UserModel:
+    
+#     token = credentials.credentials
 
 #     try:
 #         payload = decode_token(token)
-#         user_id = str(payload.get("sub"))
+#         user_id = payload.get("sub")
+        
+#         if not user_id:
+#             raise credentials_exc
 #     except Exception:
 #         raise credentials_exc
 
-#     repo = UserRepository(db)
-#     user = repo.get_by_user_id(user_id)
-
+#     user = UserRepository(db).obtener_por_user_id(user_id)
 #     if not user:
 #         raise credentials_exc
 
 #     return user
 
+def get_current_user(
+    token: Annotated[str, Depends(oauth2_scheme)], 
+    db: Annotated[Session, Depends(get_session)]) -> UserModel:
+    
+    #token = credentials.credentials
 
-# CurrentUser = Annotated[User, Depends(get_current_user)]
+    try:
+        payload = decode_token(token)
+        user_id = payload.get("sub")
+        
+        print(user_id)
+        
+        if not user_id:
+            raise credentials_exc
+    except Exception:
+        raise credentials_exc
+
+    user = UserRepository(db).obtener_por_user_id(user_id)
+    if not user:
+        raise credentials_exc
+
+    return user
+
+CurrentUser = Annotated[UserModel, Depends(get_current_user)]

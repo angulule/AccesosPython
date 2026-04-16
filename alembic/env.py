@@ -11,6 +11,9 @@ from dotenv import load_dotenv
 from sqlmodel import SQLModel
 from sqlalchemy import create_engine
 
+from app.modules.usuario.infrastructure.UsuarioModel import UsuarioModel
+from app.modules.membership.infrastructure.MembershipModel import MembershipModel
+from app.modules.user.infrastructure.UserModel import UserModel
 from app.modules.modulo.infrastructure.ModuloModel import ModuloModel
 from app.modules.pantalla.infrastructure.PantallaModel import PantallaModel
 from app.modules.permiso.infrastructure.PermisoModel import PermisoModel
