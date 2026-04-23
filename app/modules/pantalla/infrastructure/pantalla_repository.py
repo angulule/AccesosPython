@@ -1,5 +1,5 @@
 from sqlmodel import Session, select
-from app.modules.pantalla.infrastructure.PantallaModel import PantallaModel
+from app.modules.pantalla.infrastructure.pantalla_model import PantallaModel
 
 class PantallaRepository:
     def __init__(self, session: Session):
@@ -32,6 +32,9 @@ class PantallaRepository:
         return self.session.exec(select(PantallaModel)
                                     .where(PantallaModel.modulo_id == modulo_id)
                                     .where(PantallaModel.pantalla == pantalla)).first()
+        
+    def obtener_por_pantalla(self, pantalla: str) -> PantallaModel:
+        return self.session.exec(select(PantallaModel).where(PantallaModel.pantalla == pantalla)).first()
         
     def obtener_todos(self, activo: bool) -> list[PantallaModel]:
         return self.session.exec(select(PantallaModel).where(PantallaModel.activo == activo)).all()

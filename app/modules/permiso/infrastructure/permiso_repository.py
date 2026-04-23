@@ -1,5 +1,5 @@
 from sqlmodel import Session, select
-from app.modules.permiso.infrastructure.PermisoModel import PermisoModel
+from app.modules.permiso.infrastructure.permiso_model import PermisoModel
 
 class PermisoRepository:
     def __init__(self, session: Session):

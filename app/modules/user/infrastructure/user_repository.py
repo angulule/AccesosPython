@@ -1,6 +1,6 @@
 from sqlmodel import select, Session
 
-from app.modules.user.infrastructure.UserModel import UserModel
+from app.modules.user.infrastructure.user_model import UserModel
 
 class UserRepository:
     def __init__(self, db: Session):

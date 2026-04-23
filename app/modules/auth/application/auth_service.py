@@ -5,9 +5,9 @@ from sqlmodel import Session
 from datetime import datetime, timezone
 
 from app.core.security import create_access_token, hash_password, verify_password
-from app.modules.user.infrastructure.UserModel import UserModel
-from app.modules.membership.infrastructure.MembershipModel import MembershipModel
-from app.modules.usuario.infrastructure.UsuarioModel import UsuarioModel
+from app.modules.user.infrastructure.user_model import UserModel
+from app.modules.membership.infrastructure.membership_model import MembershipModel
+from app.modules.usuario.infrastructure.usuario_model import UsuarioModel
 from app.modules.usuario.interfaces.usuario_schema import UsuarioRead
 from app.modules.auth.interfaces.auth_schema import LoginResponse
 

@@ -6,10 +6,10 @@ from sqlmodel import Session, select
 from typing import Optional
 
 from app.core.db import engine
-from app.modules.user.infrastructure.UserModel import UserModel
-from app.modules.usuario.infrastructure.UsuarioModel import UsuarioModel
-from app.modules.membership.infrastructure.MembershipModel import MembershipModel
-from app.modules.permiso.infrastructure.PermisoModel import PermisoModel
+from app.modules.user.infrastructure.user_model import UserModel
+from app.modules.usuario.infrastructure.usuario_model import UsuarioModel
+from app.modules.membership.infrastructure.membership_model import MembershipModel
+from app.modules.permiso.infrastructure.permiso_model import PermisoModel
 from app.seeds.data.permisos import PERMISOS
 from app.seeds.data.usuarios import USERS
 

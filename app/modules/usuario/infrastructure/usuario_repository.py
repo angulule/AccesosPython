@@ -1,7 +1,7 @@
 from sqlmodel import select, Session
 from fastapi import HTTPException
 
-from app.modules.usuario.infrastructure.UsuarioModel import UsuarioModel
+from app.modules.usuario.infrastructure.usuario_model import UsuarioModel
 
 class UsuarioRepository:
     def __init__(self, db: Session):

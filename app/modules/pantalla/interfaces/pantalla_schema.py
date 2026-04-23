@@ -17,5 +17,10 @@ class PantallaRead(BaseModel):
     tracking_id: str
     pantalla: str
     descripcion: Optional[str] = None
-    modulo_id: int
+    modulo_id: str
+    modulo: str
     activo: bool
+    registrado_por: str
+    fecha_creacion: datetime
+    modificado_por: Optional[str] = None
+    fecha_modificacion: Optional[datetime] = None

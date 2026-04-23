@@ -1,6 +1,6 @@
 from sqlmodel import Session
 
-from app.modules.usuario.infrastructure.UsuarioModel import Usuario
+from app.modules.usuario.infrastructure.usuario_model import Usuario
 from app.modules.usuario.infrastructure.usuario_repository import UsuarioRepository
 
 class UsuarioService:

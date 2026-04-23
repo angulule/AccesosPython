@@ -1,6 +1,6 @@
 from sqlmodel import Session
 
-from app.modules.membership.infrastructure.MembershipModel import Membership
+from app.modules.membership.infrastructure.membership_model import Membership
 from app.modules.membership.infrastructure.membership_repository import MembershipRepository
 
 class MembershipService:

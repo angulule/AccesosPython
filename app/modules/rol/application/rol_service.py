@@ -4,7 +4,7 @@ from datetime import datetime
 from fastapi import HTTPException
 from sqlmodel import Session
 
-from app.modules.rol.infrastructure.RolModel import RolModel
+from app.modules.rol.infrastructure.rol_model import RolModel
 from app.modules.rol.interfaces.rol_schema import RolCreate, RolUpdate
 from app.modules.rol.infrastructure.rol_repository import RolRepository
 

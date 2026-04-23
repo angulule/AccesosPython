@@ -1,7 +1,7 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from app.modules.membership.infrastructure.MembershipModel import MembershipModel
+from app.modules.membership.infrastructure.membership_model import MembershipModel
 
 
 class MembershipRepository:

@@ -9,16 +9,17 @@ router = APIRouter(prefix="/modulo", tags=["modulo"])
 
 
 @router.post("/crear", response_model=ModuloRead, status_code=status.HTTP_201_CREATED)
-def crear(nombre: str, db: DBSession, user = Depends(get_current_user)):
+def crear(nombre: str, db: DBSession, user: CurrentUser):
     return ModuloService(db).crear(nombre, user.user_id)
 
 @router.put("/actualizar", response_model=ModuloRead)
-def actualizar(tracking_id: str, nombre: str, db: DBSession, user = Depends(get_current_user)):
+def actualizar(tracking_id: str, nombre: str, db: DBSession, user: CurrentUser):
+    print(user)
     return ModuloService(db).actualizar(tracking_id, nombre, user.user_id)
 
 @router.put("/eliminar", status_code=status.HTTP_204_NO_CONTENT)
-def eliminar(tracking_id: str, db: DBSession, user = Depends(get_current_user)):
-    ModuloService(db).eliminar(tracking_id)
+def eliminar(tracking_id: str, db: DBSession, user: CurrentUser):
+    ModuloService(db).eliminar(tracking_id, user.user_id)
     return None
 
 @router.get("/obtener_todos", response_model=list[ModuloRead])
@@ -27,5 +28,5 @@ def obtener_todos(activo: bool, db: DBSession, user: CurrentUser):
 
 
 @router.get("/obtener_por_tracking_id", response_model=ModuloRead)
-def obtener_por_tracking_id(tracking_id: str, db: DBSession, user = Depends(get_current_user)):
+def obtener_por_tracking_id(tracking_id: str, db: DBSession, user: CurrentUser):
     return ModuloService(db).obtener_por_tracking_id(tracking_id)

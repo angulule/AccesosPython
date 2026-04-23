@@ -1,5 +1,5 @@
 from sqlmodel import Session, select
-from app.modules.modulo.infrastructure.ModuloModel import ModuloModel
+from app.modules.modulo.infrastructure.modulo_model import ModuloModel
 
 class ModuloRepository:
     def __init__(self, session: Session):

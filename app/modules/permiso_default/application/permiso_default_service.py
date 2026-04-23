@@ -4,7 +4,7 @@ from datetime import datetime
 from fastapi import HTTPException
 from sqlmodel import Session
 
-from app.modules.permiso_default.infrastructure.PermisoDefaultModel import PermisoDefaultModel
+from app.modules.permiso_default.infrastructure.permiso_default_model import PermisoDefaultModel
 from app.modules.permiso_default.interfaces.permiso_default_schema import PermisoDefaultCreate, PermisoDefaultUpdate
 from app.modules.permiso_default.infrastructure.permiso_default_repository import PermisoDefaultRepository
 

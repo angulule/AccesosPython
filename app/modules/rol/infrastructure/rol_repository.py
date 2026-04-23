@@ -1,5 +1,5 @@
 from sqlmodel import Session, select
-from app.modules.rol.infrastructure.RolModel import RolModel
+from app.modules.rol.infrastructure.rol_model import RolModel
 
 class RolRepository:
     def __init__(self, session: Session):

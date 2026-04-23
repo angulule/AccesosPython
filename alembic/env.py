@@ -11,13 +11,14 @@ from dotenv import load_dotenv
 from sqlmodel import SQLModel
 from sqlalchemy import create_engine
 
-from app.modules.usuario.infrastructure.UsuarioModel import UsuarioModel
-from app.modules.membership.infrastructure.MembershipModel import MembershipModel
-from app.modules.user.infrastructure.UserModel import UserModel
-from app.modules.modulo.infrastructure.ModuloModel import ModuloModel
-from app.modules.pantalla.infrastructure.PantallaModel import PantallaModel
-from app.modules.permiso.infrastructure.PermisoModel import PermisoModel
-from app.modules.rol.infrastructure.RolModel import RolModel
+from app.modules.usuario.infrastructure.usuario_model import UsuarioModel
+from app.modules.membership.infrastructure.membership_model import MembershipModel
+from app.modules.user.infrastructure.user_model import UserModel
+from app.modules.modulo.infrastructure.modulo_model import ModuloModel
+from app.modules.pantalla.infrastructure.pantalla_model import PantallaModel
+from app.modules.permiso.infrastructure.permiso_model import PermisoModel
+from app.modules.rol.infrastructure.rol_model import RolModel
+from app.modules.permiso_usuario.infrastructure.permiso_usuario_model import PermisoUsuarioModel
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

@@ -11,3 +11,7 @@ class LoginResponse(BaseModel):
     token_type: str
     usuario: UsuarioRead
     
+class TokenValidationResponse(BaseModel):
+    valid: bool
+    usuario: dict
+    
