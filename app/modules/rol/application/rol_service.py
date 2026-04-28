@@ -11,10 +11,10 @@ from app.modules.rol.infrastructure.rol_repository import RolRepository
 class RolService:
     def __init__(self, db: Session):
         self.db = db
-        self.repo = RolRepository(db)
+        self.rol_repository = RolRepository(db)
         
     def crear(self, payload: RolCreate):
-        if self.repo.obtener_por_rol(payload.rol.strip()):
+        if self.rol_repository.obtener_por_rol(payload.rol.strip()):
             raise HTTPException(status_code=409, detail="El rol ya se encuentra registrado.")
         
         rol = RolModel(
@@ -24,11 +24,11 @@ class RolService:
             registrado_por=1
         )
         
-        rol = self.repo.crear(rol)
+        rol = self.rol_repository.crear(rol)
         return rol
 
     def actualizar(self, payload: RolUpdate):
-        rol = self.repo.obtener_por_role_id(payload.role_id)
+        rol = self.rol_repository.obtener_por_role_id(payload.role_id)
         if not rol:
             raise HTTPException(status_code=404, detail="Rol no encontrado")
         
@@ -40,20 +40,20 @@ class RolService:
         # if payload.descripcion:
         #     rol.descripcion = payload.descripcion.strip()
         
-        return self.repo.actualizar(rol)
+        return self.rol_repository.actualizar(rol)
     
     def eliminar(self, role_id: str) -> None:
-        rol = self.repo.obtener_por_role_id(role_id)
+        rol = self.rol_repository.obtener_por_role_id(role_id)
         if not rol:
             raise HTTPException(status_code=404, detail="Rol no encontrado")
         
-        self.repo.eliminar(rol)
+        self.rol_repository.eliminar(rol)
     
     def obtener_todos(self, activo: bool):
-        return self.repo.obtener_todos(activo)
+        return self.rol_repository.obtener_todos(activo)
     
     def obtener_por_role_id(self, tracking_id: str):
-        return self.repo.obtener_por_role_id(tracking_id)
+        return self.rol_repository.obtener_por_role_id(tracking_id)
     
     def obtener_por_rol_id(self, rol_id: int):
-        return self.repo.obtener_por_rol_id(rol_id)
+        return self.rol_repository.obtener_por_rol_id(rol_id)

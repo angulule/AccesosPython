@@ -17,7 +17,7 @@ def crear(db: DBSession, data: PantallaCreate, user: CurrentUser):
 def actualizar(db: DBSession, data: PantallaUpdate, user: CurrentUser):
     return PantallaService(db).actualizar(data, user.user_id)
 
-@router.put("/eliminar", status_code=status.HTTP_204_NO_CONTENT)
+@router.put("/eliminar")
 def eliminar(db: DBSession, tracking_id: str, user: CurrentUser):
     PantallaService(db).eliminar(tracking_id, user.user_id)
     return None

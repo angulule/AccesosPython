@@ -16,7 +16,7 @@ def crear(db: DBSession, nombre: str):
 def actualizar(db: DBSession, tracking_id: str, nombre: str):
     return PermisoService(db).actualizar(tracking_id, nombre)
 
-@router.put("/eliminar", status_code=status.HTTP_204_NO_CONTENT)
+@router.put("/eliminar")
 def eliminar(db: DBSession, tracking_id: str):
     PermisoService(db).eliminar(tracking_id)
     return None

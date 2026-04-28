@@ -14,8 +14,6 @@ class PermisoDefaultService:
         self.permiso_default_repository = PermisoDefaultRepository(db)
         
     def crear(self, payload: PermisoDefaultCreate):
-        if self.repo.obtener_por_permiso_default(payload.permiso_default.strip()):
-            raise HTTPException(status_code=409, detail="El permiso_default ya se encuentra registrado.")
         
         permiso_default = PermisoDefaultModel(
             tracking_id=str(uuid.uuid4()),

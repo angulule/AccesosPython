@@ -6,13 +6,13 @@ from app.modules.user.infrastructure.user_repository import UserRepository
 class UsuarioService:
     def __init__(self, db: Session):
         self.db = db
-        self.repo = UserRepository(db)
+        self.user_repository = UserRepository(db)
         
     def crear(self, user: User):
-        return self.repo.crear(user)
+        return self.user_repository.crear(user)
         
     def obtener_por_user_id(self, user_id: str):
-        return self.repo.obtener_por_user_id(user_id)
+        return self.user_repository.obtener_por_user_id(user_id)
     
     def obtener_por_username(self, username: str):
-        return self.repo.obtener_por_username(username)
+        return self.user_repository.obtener_por_username(username)

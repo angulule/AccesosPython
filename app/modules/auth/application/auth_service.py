@@ -2,7 +2,6 @@ import uuid
 
 from fastapi import HTTPException
 from sqlmodel import Session
-from datetime import datetime, timezone
 
 from app.core.security import create_access_token, hash_password, verify_password
 from app.modules.user.infrastructure.user_model import UserModel
@@ -18,16 +17,16 @@ from app.modules.usuario.infrastructure.usuario_repository import UsuarioReposit
 class AuthService:
     def __init__(self, db: Session):
         self.db = db
-        self.userRepo = UserRepository(db)
-        self.membershipRepo = MembershipRepository(db)
-        self.usuarioRepo = UsuarioRepository(db)
+        self.user_repository = UserRepository(db)
+        self.membership_repository = MembershipRepository(db)
+        self.usuario_repository = UsuarioRepository(db)
         
     def login(self, username: str, password: str) -> LoginResponse:
-        user = self.userRepo.obtener_por_username(username)
+        user = self.user_repository.obtener_por_username(username)
         if not user:
             raise HTTPException(status_code=401, detail="Credenciales inválidas")
             
-        membership = self.membershipRepo.obtener_por_user_id(user.user_id)
+        membership = self.membership_repository.obtener_por_user_id(user.user_id)
         
         if not user or not verify_password(password[:72], membership.password):
             raise HTTPException(status_code=401, detail="Credenciales inválidas")
@@ -37,9 +36,9 @@ class AuthService:
             "username": user.username
         })
         
-        usuario = self.usuarioRepo.obtener_por_user_id(user.user_id)
+        usuario = self.usuario_repository.obtener_por_user_id(user.user_id)
         
-        login_response = LoginResponse (
+        return LoginResponse (
             token=token,
             token_type="bearer",
             usuario=UsuarioRead (
@@ -48,8 +47,6 @@ class AuthService:
                 email=membership.email
             )
         )
-        
-        return login_response
 
     # def register(self, payload: UsuarioCreate) -> UsuarioRead:
     #     if self.userRepo.obtener_por_username(payload.username):
